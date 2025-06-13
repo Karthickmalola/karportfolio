@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio - KARTHICK</title>
   <style>
     * {
@@ -32,36 +32,52 @@
     header {
       background: #333;
       color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    header nav ul {
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .nav-links {
       list-style: none;
       display: flex;
-      justify-content: flex-end;
       gap: 20px;
-      padding: 20px;
     }
 
-    header nav a {
+    .nav-links li a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
     }
-.resume-btn {
-  background-color: #fff;
-  color: #0077cc;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid #0077cc;
-  transition: background-color 0.3s, color 0.3s;
-}
 
-.resume-btn:hover {
-  background-color: #0077cc;
-  color: #fff;
-}
+    .resume-btn {
+      background-color: #c31fcf;
+      color: #0077cc;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #0077cc;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .resume-btn:hover {
+      background-color: #0077cc;
+      color: #fff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
 
     .hero {
       background: #0077cc;
@@ -97,6 +113,7 @@
 
     h2 {
       margin-bottom: 20px;
+      font-size: 28px;
     }
 
     .project-grid {
@@ -112,87 +129,95 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Contact Section Styling */
-.contact {
-  background: #f9f9f9;
-  padding: 60px 0;
-}
+    .contact {
+      background: #f9f9f9;
+      padding: 60px 0;
+    }
 
-.contact h2 {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: #0077cc;
-}
+    .contact h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #0077cc;
+    }
 
-.contact p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #333;
-}
+    .contact form {
+      max-width: 600px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    }
 
-.contact strong {
-  color: #000;
-}
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      background: #fdfdfd;
+      transition: border 0.3s;
+    }
 
-.contact form {
-  margin-top: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-}
+    .contact input:focus,
+    .contact textarea:focus {
+      border: 1px solid #0077cc;
+      outline: none;
+    }
 
-.contact form input,
-.contact form textarea {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  background: #fdfdfd;
-  transition: border 0.3s;
-}
+    .contact button {
+      width: 100%;
+      background-color: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
 
-.contact form input:focus,
-.contact form textarea:focus {
-  border: 1px solid #0077cc;
-  outline: none;
-}
+    .contact button:hover {
+      background-color: #005fa3;
+    }
 
-.contact form button {
-  width: 100%;
-  background-color: #0077cc;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.3s;
-}
-
-.contact form button:hover {
-  background-color: #005fa3;
-}
-
-#formStatus {
-  text-align: center;
-  margin-top: 15px;
-  font-weight: bold;
-  color: green;
-}
+    #formStatus {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
 
     footer {
       background: #333;
       color: #fff;
       text-align: center;
       padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: #444;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -200,15 +225,14 @@
 
 <header>
   <nav class="container">
-    <ul>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#certificates">Certificates</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li>
-        <a href="resume.pdf" class="resume-btn" target="_blank">Resume</a>
-      </li>
+      <li><a href="resume.pdf" class="resume-btn" target="_blank">Resume</a></li>
     </ul>
   </nav>
 </header>
@@ -216,30 +240,30 @@
 <section class="hero">
   <div class="container">
     <img src="karthick.jpg" alt="Your Photo" class="profile-pic" />
-    <h2>Hi, Karthick</h2>
+    <h2>Hi, I’m Karthick</h2>
     <p>Web Developer | Designer | Creator</p>
     <a href="#projects" class="btn">View Projects</a>
   </div>
 </section>
 
-<section id="about" class="about">
+<section id="about">
   <div class="container">
     <h2>About Me</h2>
     <p>I am a web developer with a passion for creating beautiful and functional websites. I enjoy turning complex problems into simple, elegant solutions.</p>
   </div>
 </section>
 
-<section id="education" class="education">
+<section id="education">
   <div class="container">
     <h2>Education & Qualifications</h2>
     <ul>
-      <li><strong>Master of Engineering in Computer Science</strong> Anna University (2016 - 2018)</li>
-      <li><strong>Bachelor of Engineering in Computer Science</strong> Madras Institute of Technology, Anna University(2013-2015)</li>
+      <li><strong>Master of Engineering in Computer Science</strong> – Anna University (2016 - 2018)</li>
+      <li><strong>Bachelor of Engineering in Computer Science</strong> – MIT, Anna University (2013 - 2015)</li>
     </ul>
   </div>
 </section>
 
-<section id="certificates" class="certificates">
+<section id="certificates">
   <div class="container">
     <h2>Certificates</h2>
     <ul>
@@ -250,29 +274,24 @@
   </div>
 </section>
 
-<section id="projects" class="projects">
+<section id="projects">
   <div class="container">
     <h2>Projects</h2>
     <div class="project-grid">
       <div class="project-card">
-        <h3>Project One</h3>
-        <p>AMS Charitable Trust – <a heref="www.amscharitabletrust.org.in">www.amscharitabletrust.org.in</a>
-Created a vibrant website highlighting the trust’s activities, donation options, and upcoming events, helping them reach a wider donor and volunteer base online.</p>
+        <h3>AMS Charitable Trust</h3>
+        <p><a href="https://www.amscharitabletrust.org.in" target="_blank">www.amscharitabletrust.org.in</a><br>
+        Developed a vibrant site to promote donations and events.</p>
       </div>
       <div class="project-card">
-        <h3>Project Two</h3>
-        <p>Sri Malolan College of Arts and Science – www.srimalolancollege.ac.in
-Launched a fully interactive website with online admission forms, department updates, staff profiles, and integrated SEO to strengthen the college’s online branding.</p>
+        <h3>Sri Malolan College</h3>
+        <p><a href="https://www.srimalolancollege.ac.in" target="_blank">www.srimalolancollege.ac.in</a><br>
+        Fully interactive college portal with online forms and SEO integration.</p>
       </div>
       <div class="project-card">
-        <h3>Project THREE</h3>
-        <p>Sri Malolan College of Arts and Science – www.srimalolancollege.ac.in
-Launched a fully interactive website with online admission forms, department updates, staff profiles, and integrated SEO to strengthen the college’s online branding.</p>
-      </div>
-    <div class="project-card">
-        <h3>Project FOUR</h3>
-        <p>Guru Shree Shantivijai Jain Arts and Science College – www.gssjaincollege.in
-Built a dynamic educational portal featuring admission details, academic resources, event galleries, and news updates to support the institution’s growth and visibility.</p>
+        <h3>GSS Jain College</h3>
+        <p><a href="https://www.gssjaincollege.in" target="_blank">www.gssjaincollege.in</a><br>
+        Dynamic portal with admission info, galleries, and news updates.</p>
       </div>
     </div>
   </div>
@@ -281,8 +300,7 @@ Built a dynamic educational portal featuring admission details, academic resourc
 <section id="contact" class="contact">
   <div class="container">
     <h2>Contact Me</h2>
-    
-    <p><strong>Phone:</strong> +91-9789904352,+91-9370000608</p>
+    <p><strong>Phone:</strong> +91-9789904352, +91-9370000608</p>
     <p><strong>Address:</strong> Sakthi Enclave, Madurantakam - 603306</p>
     <p><strong>Email:</strong> karthickmalola@gmail.com</p>
 
@@ -296,7 +314,6 @@ Built a dynamic educational portal featuring admission details, academic resourc
   </div>
 </section>
 
-
 <footer>
   <div class="container">
     <p>&copy; 2025 Karthick_Portfolio. All rights reserved.</p>
@@ -304,7 +321,7 @@ Built a dynamic educational portal featuring admission details, academic resourc
 </footer>
 
 <script>
-  // Basic form submission script (can be expanded)
+  // Form submission feedback
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
 
@@ -313,6 +330,11 @@ Built a dynamic educational portal featuring admission details, academic resourc
     status.textContent = 'Thank you for reaching out!';
     form.reset();
   });
+
+  // Mobile nav toggle
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+  }
 </script>
 
 </body>
